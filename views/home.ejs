@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>
+            <%= title%>
+        </title>
+        <script src="https://kit.fontawesome.com/084747bad4.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+
+        <div class="outer-Container">
+            <header>TODO APP</header>
+            <form action="/create_list" method="post">
+              <!-- DESCRIPTION -->
+            <div class="description_container">
+              <label for="description_input">DESCRIPTION</label>
+              <input
+              name="description"
+                id="description_input"
+                type="text"
+                placeholder="What do you want to do?"
+                required
+              />
+            </div>
+            <!-- CATEGORY -->
+            <div class="categories_date_container">
+              <div class="categories">
+                CATEGORY
+                <select id="select_category" name="categories" class="dropDown">
+                  <option disabled selected>Choose a category</option>
+                  <option>SCHOOL</option>
+                  <option>WORK</option>
+                  <option>PERSONAL</option>
+                  <option>CLEANING</option>
+                  <option>OTHER</option>
+      
+                </select>
+              </div>
+              <!-- DATE -->
+              <div class="date">
+                DUE DATE
+                <input name="date" required type="date" />
+              </div>
+            </div>
+            <div class="buttons">
+              <!-- ADD TASK -->
+              <button type="submit" class="add_btn">
+                <i class="fa-solid fa-plus"></i> ADD TASK
+              </button>
+            </form>
+      
+              <form action="delete_list" method="post">
+                <!-- DELETE TASKS -->
+              <button type="submit"  class="delete_btn">
+                <i class="fa-solid fa-trash"></i> DELETE TASKS
+              </button>
+        
+            </div>
+            <!-- Tasks List -->
+            <div class="list_container">
+              <%let id = 1234%>
+              <% for(let i of todoList) {%>
+              <div class="todo_detail">
+                <div class="left">
+                  <input class="list_checkBox" value="<%=i._id%>" name="ids" id="<%=i._id%>" type="checkbox" />
+                  <label class="description"  for="<%=i._id%>">
+                    <div><%=i.description%></div>
+                    <div class="date">
+                      <i class="fa-solid fa-calendar-days"></i>
+                      <p><%=new Date(i.date).toLocaleString('default', { month: 'short' })%> <%=new Date(i.date).getDate()%>, <%=new Date(i.date).getFullYear() %></p>
+                    </div>
+                  </label>
+                </div> 
+                <div class="right">
+                  <button value='<%=i.categories%>' class="list_button" >
+                    <%=i.categories%>
+                </button>
+                </div>
+              </div>
+              <%}%>
+            </div>
+          </form>
+          </div>
+        
+
+       <script src="/js/home.js"></script> 
+</html>
